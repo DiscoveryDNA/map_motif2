@@ -7,8 +7,7 @@ def bash_pipeline(alignment_file, motif_file, stand_cutoff=-50):
 	motif_file: motif file name, for example "bcd_FlyReg.fm"
 	stand_cutoff: score threshold (default no threshold)
 	"""
-	df = prelim_pipeline(align_path, motif_path)
-	df.to_csv(alignment_file + motif_file + "_bash_output")
-	# tacks on the alignment file name without ".fa" for the name of the csv output
+	df = prelim_pipeline(alignment_file, motif_file)
+	df.to_csv("bash_output")
 
 bash_pipeline(sys.argv[1], sys.argv[2])
