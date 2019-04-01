@@ -1,0 +1,12 @@
+README.md
+setup.py
+bin/test_script.py
+map_motif2_code/MSE.py
+map_motif2_code/__init__.py
+map_motif2_code/motif_pipeline.py
+map_motif2_code/threshold_setter.py
+map_motif2_code.egg-info/PKG-INFO
+map_motif2_code.egg-info/SOURCES.txt
+map_motif2_code.egg-info/dependency_links.txt
+map_motif2_code.egg-info/not-zip-safe
+map_motif2_code.egg-info/top_level.txt
