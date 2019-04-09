@@ -8,8 +8,34 @@ def bash_pipeline(alignment_file, motif_file, stand_cutoff=-50):
 	motif_file: motif file path
 	stand_cutoff: score threshold (default no threshold)
 	"""
-	df = prelim_pipeline(alignment_file, motif_file)
-	df.to_csv(os.path.basename(alignment_file) + "_" + os.path.basename(motif_file) + "_bash_output.csv")
+	align_name = os.path.basename(alignment_file)
+	motif_name = os.path.basename(motif_file)
+	print("Alignment File: ", align_name)
+	print("Motif File: ", motif_name)
+	print("Threshold: ", stand_cutoff)
 
-# Takes the 2nd and 3rd strings from command line and uses them as arguments for bash_pipeline
-bash_pipeline(sys.argv[1], sys.argv[2])
+	df = prelim_pipeline(alignment_file, motif_file)
+	df.to_csv(align_name[-10:] + "_" + motif_name + "_bashoutput.csv")
+	print("Success! The outputted CSV file is located at: ", os.getcwd())
+
+# Make sure inputted arguments are valid
+arg1 = sys.argv[1]
+arg2 = sys.argv[2]
+arg3 = sys.argv[3]
+
+try:
+    alignment = list(SeqIO.parse(arg1, "fasta"))
+except:
+    print ("ERROR: This is not a fasta alignment file")
+    sys.exit()
+try:
+    motif = motifs.read(open(arg2), "pfm")
+except:
+    print ("ERROR: This is not a pfm file")
+    sys.exit()
+try:
+    threshold = arg3
+except IndexError:
+    threshold = -10000
+
+bash_pipeline(arg1, arg2, arg3)
